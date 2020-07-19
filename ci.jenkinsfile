@@ -1,3 +1,7 @@
+#!groovy
+
+String buildshell = "${env.buildShell}"
+
 pipeline{
     agent { node {label "master"}}
 
