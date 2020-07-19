@@ -33,7 +33,7 @@ pipeline{
                 script{
                     
                 gradlehome = tool "GRADLE"
-                sh "${gradlehome}/bin/ant ${buildshell}"
+                sh "${gradlehome}/bin/gradle ${buildshell}"
      
                 }
             }
