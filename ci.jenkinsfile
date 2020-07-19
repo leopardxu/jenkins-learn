@@ -16,5 +16,15 @@ pipeline{
                 }
             }
         }
+        stage("ant build") {
+            steps{
+                script{
+                    
+                anthome = tool "ANT"
+                sh "${anthome}/bin/ant ${buildshell}"
+     
+                }
+            }
+        }
     }
 }
