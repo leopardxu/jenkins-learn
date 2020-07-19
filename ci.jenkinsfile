@@ -1,12 +1,25 @@
 #!groovy
 
-String buildshell = "${env.buildShell}"
+@Library('jenkins-learn') _
+
+def build = new org.devops.build()
+
+String buildType = "${env.buildType}"
+String buildShell = "${env.buildShell}"
 
 pipeline{
     agent { node {label "master"}}
 
     stages {
-        stage("maven build") {
+        stage("build") {
+            steps{
+                script{
+                    
+                    build.Build(buildType,buildShell)
+                }
+            }
+        }
+        /*stage("maven build") {
             steps{
                 script{
                     
@@ -47,6 +60,6 @@ pipeline{
      
                 }
             }
-        }
+        }*/
     }
 }
