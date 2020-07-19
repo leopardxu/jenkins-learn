@@ -1,6 +1,6 @@
 #!groovy
 
-@Library('jenkins-learn') _
+@Library('jenkins-learn@master') _
 
 def build = new org.devops.build()
 
