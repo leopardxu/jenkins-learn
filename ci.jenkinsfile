@@ -19,9 +19,21 @@ pipeline{
         stage("ant build") {
             steps{
                 script{
+                    try {    
+                        anthome = tool "ANT"
+                        sh "${anthome}/bin/ant ${buildshell}"
+                    } catch(e) {
+                          println(e)
+                      }
+                }
+            }
+        }
+        stage("gradle build") {
+            steps{
+                script{
                     
-                anthome = tool "ANT"
-                sh "${anthome}/bin/ant ${buildshell}"
+                gradlehome = tool "GRADLE"
+                sh "${gradlehome}/bin/ant ${buildshell}"
      
                 }
             }
