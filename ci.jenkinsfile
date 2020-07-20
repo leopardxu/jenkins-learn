@@ -8,11 +8,20 @@ def deploy = new org.devops.deploy()
 String buildType = "${env.buildType}"
 String buildShell = "${env.buildShell}"
 String deployHosts = "${env.deployHosts}"
+String srcUrl = "${env.srcUrl}"
+String branchName = "${env.branchName}"
 
 pipeline{
     agent { node {label "master"}}
 
     stages {
+        stage("checkout") {
+            steps{
+                script {
+                    checkout([$class: 'GitSCM', branches: [[name: "${branchName}"]], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'weilai-gitlab', url: "${srcUrl}"]]])
+                }
+            }
+        }
         stage("build") {
             steps{
                 script{
