@@ -3,8 +3,8 @@ package prg.devops
 //封装HTTP请求
 def HttpReq(reqType,reqUrl,reqBody){
     def gitServer = "https://git.nevint.com/api/v4"
-    withCredentials([string(credentialsId: 'weilai-gitlab', variable: 'weilaigitlab')]) {
-      result = httpRequest customHeaders: [[maskValue: true, name: 'PRIVATE-TOKEN', value: "${weilaigitlab}"]], 
+    withCredentials([string(credentialsId: 'gitlab-zjj', variable: 'gitlab-zjj')]) {
+      result = httpRequest customHeaders: [[maskValue: true, name: 'PRIVATE-TOKEN', value: "${gitlab-zjj}"]], 
                 httpMode: reqType, 
                 contentType: "APPLICATION_JSON",
                 consoleLogResponseBody: true,
