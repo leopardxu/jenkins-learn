@@ -22,6 +22,13 @@ pipeline{
         stage("checkout") {
             steps{
                 script {
+                   
+                    if ("${runOpts}" == "GitlabPush") {
+                        branchName = branch - "refs/heads/"
+                    }
+
+                    println("${branchName}")
+
                     tools.PrintMes("获取代码","green")
                     checkout([$class: 'GitSCM', branches: [[name: "${branchName}"]], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'weilai-gitlab', url: "${srcUrl}"]]])
                 }
