@@ -14,6 +14,11 @@ String deployHosts = "${env.deployHosts}"
 String srcUrl = "${env.srcUrl}"
 String branchName = "${env.branchName}"
 
+if ("${runOpts}" == "GitlabPush") {
+    branchName = branch - "refs/heads/"
+    currentBuild.description == "Trigger by ${userName} ${branch}"
+}
+
 //pipeline
 pipeline{
     agent { node {label "master"}}
@@ -22,10 +27,6 @@ pipeline{
         stage("checkout") {
             steps{
                 script {
-                   
-                    if ("${runOpts}" == "GitlabPush") {
-                        branchName = branch - "refs/heads/"
-                    }
 
                     println("${branchName}")
 
