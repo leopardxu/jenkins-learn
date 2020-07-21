@@ -104,7 +104,7 @@ pipeline{
             script {
                 println("success")
                 gitlab.ChangeCommitStatus(projectId,commitSha,"success")
-                toemail("流水线成功",userEmail)
+                toemail.Email("流水线成功",userEmail)
             }
         }    
 
@@ -112,7 +112,7 @@ pipeline{
             script {
                 println("failure")
                 gitlab.ChangeCommitStatus(projectId,commitSha,"failed")
-                toemail("流水线失败",userEmail)
+                toemail.Email("流水线失败",userEmail)
             }
         }    
 
@@ -120,7 +120,7 @@ pipeline{
             script {
                 println("aborted")
                 gitlab.ChangeCommitStatus(projectId,commitSha,"canceled")
-                toemail("流水线取消",userEmail)
+                toemail.Email("流水线取消",userEmail)
             }
         }    
 
