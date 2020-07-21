@@ -16,7 +16,7 @@ String branchName = "${env.branchName}"
 
 if ("${runOpts}" == "GitlabPush") {
     branchName = branch - "refs/heads/"
-    currentBuild.description == "Trigger by ${userName} ${branch}"
+    currentBuild.description = "Trigger by ${userName} ${branch}"
 }
 
 //pipeline
