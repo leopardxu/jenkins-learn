@@ -7,6 +7,7 @@ def build = new org.devops.build()
 def deploy = new org.devops.deploy()
 def tools = new org.devops.tools()
 def gitlab = new org.devops.gitlab()
+def toemail = new org.devops.toemail()
 
 //env
 String buildType = "${env.buildType}"
@@ -103,6 +104,7 @@ pipeline{
             script {
                 println("success")
                 gitlab.ChangeCommitStatus(projectId,commitSha,"success")
+                toemail("流水线成功",userEmail)
             }
         }    
 
@@ -110,6 +112,7 @@ pipeline{
             script {
                 println("failure")
                 gitlab.ChangeCommitStatus(projectId,commitSha,"failed")
+                toemail("流水线失败",userEmail)
             }
         }    
 
@@ -117,6 +120,7 @@ pipeline{
             script {
                 println("aborted")
                 gitlab.ChangeCommitStatus(projectId,commitSha,"canceled")
+                toemail("流水线取消",userEmail)
             }
         }    
 
