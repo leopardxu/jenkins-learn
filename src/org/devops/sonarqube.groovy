@@ -2,7 +2,8 @@ package org.devops
 
 
 //scan
-def SonarScan(sonarServer,projectName,projectDesc,projectPath,branchName){
+//def SonarScan(sonarServer,projectName,projectDesc,projectPath,branchName){
+def SonarScan(projectName,projectDesc,projectPath){
     
     //定义服务器列表
     //def servers = ["test":"sonarqube-test","prod":"sonarqube-prod"]
