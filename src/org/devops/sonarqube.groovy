@@ -9,7 +9,7 @@ def SonarScan(projectName,projectDesc,projectPath){
     //def servers = ["test":"sonarqube-test","prod":"sonarqube-prod"]
     
     
-    withSonarQubeEnv("${servers[sonarServer]}"){
+    //withSonarQubeEnv("${servers[sonarServer]}"){
         def scannerHome = "/usr/local/sonar-scanner-4.4.0.2170-linux"
         def sonarServer = "http://10.124.16.241:9000"
         def sonarDate = sh  returnStdout: true, script: 'date  +%Y%m%d%H%M%S'
@@ -43,7 +43,7 @@ def SonarScan(projectName,projectDesc,projectPath){
 
         """
 
-    }
+    //}
     
     //def qg = waitForQualityGate()
     //if (qg.status != 'OK') {
