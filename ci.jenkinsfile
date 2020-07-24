@@ -24,7 +24,7 @@ if ("${runOpts}" == "GitlabPush") {
     currentBuild.description = "Trigger by ${userName} ${branch}"
     gitlab.ChangeCommitStatus(projectId,commitSha,"running")
 } else {
-    userEmail = "jiajun.zhu@nio.com"
+    userEmail = "zhujiajunzhu@qq.com"
 }
 
 //pipeline
@@ -68,6 +68,10 @@ pipeline{
                     } else {
                         println("项目已存在!")
                     }
+               
+                    tools.PrintMes("配置项目质量规则","green")
+                    apName="${JOB_NAME}".split("-")[0]
+                    sonarapi.ConfigQualityProfiles("${JOB_NAME}",java,qpName)
                     
                     tools.PrintMes("代码扫描","green")
                     sonar.SonarScan("test","${JOB_NAME}","${JOB_NAME}","src")

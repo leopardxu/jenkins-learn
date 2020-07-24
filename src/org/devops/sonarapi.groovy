@@ -52,3 +52,12 @@ def CreateProject(projectName){
     response = HttpReq("POST",apiUrl,'')
     println(response)
 }
+
+//配置项目质量规则
+
+def ConfigQualityProfiles(projectName,lang,qpname){
+    apiUrl = "qualityprofiles/add_project?language=${lang}&project=${projectName}&qualityProfile=${qpname}"
+    response = HttpReq("POST",apiUrl,'')
+    println(response)
+}
+
