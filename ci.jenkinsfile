@@ -59,7 +59,7 @@ pipeline{
             steps {
                 script {
                     tools.PrintMes("搜索项目","green")
-                    result = sonarapi.SearchProject(projectName)
+                    result = sonarapi.SearchProject("${JOB_NAME}")
                     println(result)
                 
                     if(result == "false"){
