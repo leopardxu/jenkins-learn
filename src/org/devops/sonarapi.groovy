@@ -30,3 +30,18 @@ def GetProjectStatus(projectName){
     
     return result
 }
+
+//搜索Sonar项目
+def SerarchProject(projectName){
+    apiUrl = "projects/search?projects=${projectName}"
+    response = HttpReq("GET",apiUrl,'')
+
+    response = readJSON text: """${response.content}"""
+    result = response["paging"]["total"]
+
+    if(result.toString() == "0"){
+       return "false"
+    } else {
+       return "true"
+    }
+}

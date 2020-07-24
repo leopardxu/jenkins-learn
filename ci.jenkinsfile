@@ -58,6 +58,16 @@ pipeline{
         stage("QA") {
             steps {
                 script {
+                    tools.PrintMes("搜索项目","green")
+                    result = sonarapi.SearchProject(projectName)
+                    println(result)
+                
+                    if(result == "false"){
+                        println("项目不存在!")
+                    } else {
+                        println("项目已存在!")
+                    }
+                    
                     tools.PrintMes("代码扫描","green")
                     sonar.SonarScan("test","${JOB_NAME}","${JOB_NAME}","src")
                     tools.PrintMes("获取扫描结果","green")
