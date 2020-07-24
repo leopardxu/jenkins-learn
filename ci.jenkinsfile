@@ -78,6 +78,9 @@ pipeline{
                     
                     tools.PrintMes("代码扫描","green")
                     sonar.SonarScan("test","${JOB_NAME}","${JOB_NAME}","src")
+                    
+                    //huoquyanchi 
+                    sleep 20
                     tools.PrintMes("获取扫描结果","green")
                     result=sonarapi.GetProjectStatus("${JOB_NAME}")
                     
