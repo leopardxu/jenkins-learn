@@ -11,6 +11,7 @@ def toemail = new org.devops.toemail()
 def sonar = new org.devops.sonarqube()
 def sonarapi = new org.devops.sonarapi()
 
+def runOpts
 //env
 String buildType = "${env.buildType}"
 String buildShell = "${env.buildShell}"
@@ -22,6 +23,8 @@ if ("${runOpts}" == "GitlabPush") {
     branchName = branch - "refs/heads/"
     currentBuild.description = "Trigger by ${userName} ${branch}"
     gitlab.ChangeCommitStatus(projectId,commitSha,"running")
+} else {
+    userEmail = "jiajun.zhu@nio.com"
 }
 
 //pipeline
@@ -126,7 +129,9 @@ pipeline{
         success {
             script {
                 println("success")
-                gitlab.ChangeCommitStatus(projectId,commitSha,"success")
+                if ("${runOpts}" == "GitlabPush") {
+                    gitlab.ChangeCommitStatus(projectId,commitSha,"success")
+                }
                 toemail.Email("流水线成功",userEmail)
             }
         }    
@@ -134,7 +139,9 @@ pipeline{
         failure {
             script {
                 println("failure")
-                gitlab.ChangeCommitStatus(projectId,commitSha,"failed")
+                if ("${runOpts}" == "GitlabPush") {
+                    gitlab.ChangeCommitStatus(projectId,commitSha,"failed")
+                }
                 toemail.Email("流水线失败",userEmail)
             }
         }    
@@ -142,7 +149,9 @@ pipeline{
         aborted {
             script {
                 println("aborted")
-                gitlab.ChangeCommitStatus(projectId,commitSha,"canceled")
+                if ("${runOpts}" == "GitlabPush") {
+                    gitlab.ChangeCommitStatus(projectId,commitSha,"canceled")
+                }
                 toemail.Email("流水线取消",userEmail)
             }
         }    
