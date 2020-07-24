@@ -73,6 +73,9 @@ pipeline{
                     qpName="${JOB_NAME}".split("-")[0]
                     sonarapi.ConfigQualityProfiles("${JOB_NAME}","java",qpName)
                     
+                    tools.PrintMes("配置质量阈","green")
+                    sonarapi.ConfigQualityGates("${JOB_NAME}",qpName)
+                    
                     tools.PrintMes("代码扫描","green")
                     sonar.SonarScan("test","${JOB_NAME}","${JOB_NAME}","src")
                     tools.PrintMes("获取扫描结果","green")
