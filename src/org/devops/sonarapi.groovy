@@ -32,7 +32,7 @@ def GetProjectStatus(projectName){
 }
 
 //搜索Sonar项目
-def SerarchProject(projectName){
+def SearchProject(projectName){
     apiUrl = "projects/search?projects=${projectName}"
     response = HttpReq("GET",apiUrl,'')
 
